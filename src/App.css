@@ -1,22 +1,84 @@
-.App {
+body {
+  box-sizing: border-box;
+  background-color: #111;
+  --padding-base: 20px;
+  --dark-color: #2a2a2c;
+  --accent-color: #f3413f;
+  --highlight-color: #fd8285;
+  --text-color: #feffff;
+  height: 100vh;
+}
+
+h1 {
+  grid-row: 1;
+  grid-column: 1/4;
   text-align: center;
+  color: var(--text-color);
+  font-size: 3em;
+  font-weight: 900;
 }
 
-.App-logo {
-  height: 40vmin;
+#root {
+  display: grid;
+  height: 100%;
+  place-items: center;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+#drum-machine {
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  flex-direction: row;
+  width: 50%;
+  margin: 0 auto;
+  background-color: var(--dark-color);
+  box-shadow: 7px 6px 10px var(--accent-color);
+  align-content: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
 }
 
-.App-link {
-  color: #09d3ac;
+#display {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 10px;
+  padding: var(--padding-base);
+}
+
+.drum-pad {
+  display: block;
+  background-color: var(--dark-color);
+  border: 1px solid gray;
+  border-radius: 8px;
+  box-shadow: 7px 6px 10px var(--accent-color);
+  min-height: 50px;
+  min-width: 50px;
+  max-width: 50px;
+  padding: var(--padding-base);
+  cursor: pointer;
+
+  text-align: center;
+  color: white;
+  font-weight: 750;
+  font-size: 2em;
+  text-transform: uppercase;
+}
+
+.drum-pad:hover {
+  background-color: var(--accent-color);
+  font-size: 2.1em;
+  transition: 0.1s;
+  box-shadow: 7px 6px 10px var(--text-color);
+}
+
+.drum-pad-pressed {
+  box-shadow: 7px 6px 10px var(--dark-color);
+}
+
+#controls {
+  display: block;
+  margin: 0 auto;
+  margin: var(--padding-base);
+  padding: var(--padding-base);
+  background-color: #222;
+  color: white;
+
+  text-align: center;
 }
