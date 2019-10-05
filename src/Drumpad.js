@@ -6,16 +6,25 @@ class Drumpad extends Component {
 
     //this.audio = React.createRef;
     this.handleClick = this.handleClick.bind(this);
+    this.keyPressed = this.keyPressed.bind(this);
   }
 
   handleClick() {
     let sound = document.getElementById(this.props.letter);
     sound.play();
+    sound.currentTime = 0;
+  }
+
+  keyPressed(event) {
+    if (event.keyCode === this.props.letter.charCodeAt(0)) {
+      this.handleClick();
+    }
   }
 
   render() {
     return (
       <div id={this.props.id} className="drum-pad" onClick={this.handleClick}>
+        {document.addEventListener("keydown", this.keyPressed)}
         {this.props.letter}
         <audio
           //preload="auto"
