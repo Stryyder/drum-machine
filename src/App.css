@@ -64,11 +64,11 @@ h1 {
 .drum-pad:hover {
   background-color: var(--accent-color);
   font-size: 2.1em;
-  transition: 0.1s;
-  box-shadow: 7px 6px 10px var(--text-color);
+  transition: 0.3s;
+  box-shadow: none;
 }
 
-.drum-pad-pressed {
+.drum-pad:active {
   box-shadow: 7px 6px 10px var(--dark-color);
 }
 
