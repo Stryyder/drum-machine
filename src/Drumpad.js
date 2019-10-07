@@ -1,33 +1,32 @@
 import React, { Component } from "react";
 
 class Drumpad extends Component {
-  constructor(props) {
-    super(props);
-
-    //this.audio = React.createRef;
-    this.handleClick = this.handleClick.bind(this);
-    this.keyPressed = this.keyPressed.bind(this);
-  }
-
-  handleClick() {
+  handleClick = () => {
     let sound = document.getElementById(this.props.letter);
+    let soundStyle = document.getElementById(this.props.id);
+    document.getElementById("instrumentLabel").innerHTML = this.props.id;
+    soundStyle.classList.toggle("drum-pad-active");
+    setTimeout(() => {
+      soundStyle.classList.toggle("drum-pad-active");
+    }, 100);
     sound.play();
     sound.currentTime = 0;
-  }
+  };
 
-  keyPressed(event) {
-    if (event.keyCode === this.props.letter.charCodeAt(0)) {
+  keyPressed = event => {
+    if (event.keyCode === this.props.letter.charCodeAt()) {
       this.handleClick();
     }
-  }
+  };
 
   render() {
     return (
       <div id={this.props.id} className="drum-pad" onClick={this.handleClick}>
         {document.addEventListener("keydown", this.keyPressed)}
+
         {this.props.letter}
         <audio
-          //preload="auto"
+          preload="auto"
           id={this.props.letter}
           src={this.props.src}
           ref={this.audio}
