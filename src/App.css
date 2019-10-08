@@ -110,9 +110,9 @@ h2 {
   grid-template-columns: 1fr 1fr;
   grid-gap: 3px;
   justify-items: stretch;
-  border: 1px solid var(--dark-color-offset);
+  border: 1px solid white;
   cursor: pointer;
-  background-color: green;
+  background-color: var(--dark-color-offset);
 }
 
 .optionToggleItem {

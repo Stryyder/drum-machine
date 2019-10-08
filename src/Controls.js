@@ -4,7 +4,8 @@ class Controls extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      volume: "1"
+      volume: "0.5",
+      volumeDisplay: "50"
     };
   }
 
@@ -22,10 +23,13 @@ class Controls extends Component {
   };
 
   handleVolume = event => {
-    this.setState({ volume: event.target.value });
-    /*document
+    this.setState({
+      volume: event.target.value,
+      volumeDisplay: Math.round(event.target.value * 100)
+    });
+    document
       .querySelectorAll("audio")
-      .forEach(a => (a.volume = this.state.volume));*/
+      .forEach(a => (a.volume = event.target.value));
   };
 
   render() {
@@ -58,13 +62,13 @@ class Controls extends Component {
             id="volume"
             type="range"
             min="0"
-            max="100"
-            step="1"
+            max="1"
+            step="0.01"
             value={this.state.volume}
             onChange={this.handleVolume}
           />
           <br />
-          <label htmlFor="volume">Volume: {this.state.volume}</label>
+          <label htmlFor="volume">Volume: {this.state.volumeDisplay}</label>
         </div>
 
         <h3>Bank</h3>
