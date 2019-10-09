@@ -4,7 +4,7 @@ class Drumpad extends Component {
   handleClick = () => {
     let sound = document.getElementById(this.props.letter);
     let soundStyle = document.getElementById(this.props.id);
-    document.getElementById("instrumentLabel").innerHTML = this.props.id;
+    document.getElementById("display").innerHTML = this.props.id;
     soundStyle.classList.toggle("drum-pad-active");
     setTimeout(() => {
       soundStyle.classList.toggle("drum-pad-active");

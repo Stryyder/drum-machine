@@ -4,22 +4,22 @@ class Controls extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      volume: "0.5",
-      volumeDisplay: "50"
+      volume: "0.2",
+      volumeDisplay: "20"
     };
+  }
+
+  componentDidMount() {
+    document
+      .querySelectorAll("audio")
+      .forEach(a => (a.volume = this.state.volume));
   }
 
   togglePower = () => {
     let powerOff = document.getElementById("powerOff");
     let powerOn = document.getElementById("powerOn");
 
-    if (powerOff.style.visibility === "visible") {
-      powerOff.style.visibility = "hidden";
-      powerOn.style.visibility = "visible";
-    } else {
-      powerOff.style.visibility = "visible";
-      powerOn.style.visibility = "hidden";
-    }
+    
   };
 
   handleVolume = event => {
@@ -54,7 +54,7 @@ class Controls extends Component {
         </div>
 
         <div>
-          <h2 id="instrumentLabel">Let's Play</h2>
+          <h2 id="display">Let's Play</h2>
         </div>
 
         <div id="volumeSlider">

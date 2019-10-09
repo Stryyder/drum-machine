@@ -2,24 +2,24 @@ import React, { Component } from "react";
 import "./App.css";
 import Drumpad from "./Drumpad";
 import Controls from "./Controls";
-import q from "./sounds/crash.wav";
-import w from "./sounds/cymbal.wav";
-import e from "./sounds/hat.wav";
-import a from "./sounds/kick.wav";
-import s from "./sounds/openHat.wav";
-import d from "./sounds/snare1.wav";
-import z from "./sounds/snare2.wav";
-import x from "./sounds/snare3.wav";
-import c from "./sounds/triangle.wav";
-import q2 from "./sounds/clap.wav";
-import w2 from "./sounds/hat2.wav";
-import e2 from "./sounds/hiss.wav";
-import a2 from "./sounds/kick2.wav";
-import s2 from "./sounds/openHat2.wav";
-import d2 from "./sounds/triangle2.wav";
-import z2 from "./sounds/crash2.wav";
-import x2 from "./sounds/deepKick.wav";
-import c2 from "./sounds/snare4.wav";
+import q from "./sounds/1.wav";
+import w from "./sounds/2.wav";
+import e from "./sounds/3.wav";
+import a from "./sounds/4.wav";
+import s from "./sounds/5.wav";
+import d from "./sounds/6.wav";
+import z from "./sounds/7.wav";
+import x from "./sounds/8.wav";
+import c from "./sounds/9.wav";
+import q2 from "./sounds/10.wav";
+import w2 from "./sounds/11.wav";
+import e2 from "./sounds/12.wav";
+import a2 from "./sounds/13.wav";
+import s2 from "./sounds/14.wav";
+import d2 from "./sounds/15.wav";
+import z2 from "./sounds/16.wav";
+import x2 from "./sounds/17.wav";
+import c2 from "./sounds/18.wav";
 
 const data = [
   { id: "crash", letter: "Q", src: q, src2: q2, id2: "clap" },
@@ -48,7 +48,7 @@ class App extends Component {
   render() {
     return (
       <div id="drum-machine">
-        <div id="display">
+        <div id="pad-display">
           <h1 id="branding">Drum Machine</h1>
           {data.map(d => (
             <Drumpad
