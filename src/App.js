@@ -22,15 +22,15 @@ import x2 from "./sounds/17.wav";
 import c2 from "./sounds/18.wav";
 
 const data = [
-  { id: "crash", letter: "Q", src: q, src2: q2, id2: "clap" },
-  { id: "cymbal", letter: "W", src: w, src2: w2, id2: "hat2" },
-  { id: "hat", letter: "E", src: e, src2: e2, id2: "hiss" },
-  { id: "kick", letter: "A", src: a, src2: a2, id2: "kick2" },
-  { id: "openHat", letter: "S", src: s, src2: s2, id2: "openHat2" },
-  { id: "snare1", letter: "D", src: d, src2: d2, id2: "triangle2" },
-  { id: "snare2", letter: "Z", src: z, src2: z2, id2: "crash2" },
-  { id: "snare3", letter: "X", src: x, src2: x2, id2: "deepKick" },
-  { id: "triangle", letter: "C", src: c, src2: c2, id2: "snare4" }
+  { id: "(C4)261.6256", letter: "Q", src: q, src2: q2, id2: "clap" },
+  { id: "(D4)293.6648", letter: "W", src: w, src2: w2, id2: "hat2" },
+  { id: "(E4)329.6276", letter: "E", src: e, src2: e2, id2: "hiss" },
+  { id: "(F4)349.2282", letter: "A", src: a, src2: a2, id2: "kick2" },
+  { id: "(G4)391.9954", letter: "S", src: s, src2: s2, id2: "openHat2" },
+  { id: "(A4)440.0000", letter: "D", src: d, src2: d2, id2: "triangle2" },
+  { id: "(B4)493.8833", letter: "Z", src: z, src2: z2, id2: "crash2" },
+  { id: "(C5)523.2511", letter: "X", src: x, src2: x2, id2: "deepKick" },
+  { id: "(D5)587.3295", letter: "C", src: c, src2: c2, id2: "snare4" }
 ];
 
 class App extends Component {

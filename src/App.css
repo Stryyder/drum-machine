@@ -158,3 +158,23 @@ input[type="range"]:focus {
 input[type="range"]:focus::-webkit-slider-runnable-track {
   background: #ccc;
 }
+
+#power-control {
+  display: block;
+  width: 20px;
+  height: 20px;
+  margin: 0 auto;
+  border: 2px solid white;
+  box-shadow: 2px 2px 3px #000;
+  border-radius: 60px;
+}
+
+#powerIndicator {
+  display: block;
+  margin: 0 auto;
+  width: 20px;
+  height: 20px;
+  background: rgba(0, 255, 0, 1);
+  cursor: pointer;
+  border-radius: 60px;
+}

@@ -5,7 +5,8 @@ class Controls extends Component {
     super(props);
     this.state = {
       volume: "0.2",
-      volumeDisplay: "20"
+      volumeDisplay: "20",
+      power: true
     };
   }
 
@@ -16,10 +17,14 @@ class Controls extends Component {
   }
 
   togglePower = () => {
-    let powerOff = document.getElementById("powerOff");
-    let powerOn = document.getElementById("powerOn");
+    this.setState({ power: !this.state.power });
+    let powerIndicator = document.getElementById("powerIndicator");
 
-    
+    if (this.state.power) {
+      powerIndicator.style.background = "rgba(0,255,0,0)";
+    } else {
+      powerIndicator.style.background = "rgba(0,255,0,1)";
+    }
   };
 
   handleVolume = event => {
@@ -36,25 +41,12 @@ class Controls extends Component {
     return (
       <div className="controls">
         <h3>Power</h3>
-        <div className="optionToggle" id="powerToggle">
-          <div
-            className="optionToggleItem"
-            id="powerOff"
-            onClick={this.togglePower}
-          >
-            OFF
-          </div>
-          <div
-            className="optionToggleItem"
-            id="powerOn"
-            onClick={this.togglePower}
-          >
-            ON
-          </div>
+        <div id="power-control">
+          <div id="powerIndicator" onClick={this.togglePower}></div>
         </div>
 
         <div>
-          <h2 id="display">Let's Play</h2>
+          <h3 id="display">Let's Play</h3>
         </div>
 
         <div id="volumeSlider">
