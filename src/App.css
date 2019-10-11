@@ -119,14 +119,6 @@ h2 {
   border: 1px solid var(--dark-color-offset);
 }
 
-#powerOff {
-  visibility: hidden;
-}
-
-#powerOn {
-  visibility: visible;
-}
-
 input[type="range"] {
   -webkit-appearance: none;
 }

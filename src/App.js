@@ -33,17 +33,48 @@ const data = [
   { id: "(D5)587.3295", letter: "C", src: c, src2: c2, id2: "snare4" }
 ];
 
+const ON = "rgba(0,255,0,1)";
+const OFF = "rgba(0,255,0,0)";
 class App extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
       power: true,
-      volume: "",
+      powerStyle: ON,
+      volume: "0.2",
+      volumeDisplay: "20",
       bankExpand: false,
       introSong: ["E", "W", "Q", "W", "Q", "Q", "E", "S", "A", "D", "X", "X"]
     };
   }
+
+  componentDidMount() {
+    // set initial volume so people's ears are okay
+    document
+      .querySelectorAll("audio")
+      .forEach(a => (a.volume = this.state.volume));
+  }
+
+  togglePower = () => {
+    this.setState({ power: !this.state.power });
+
+    if (this.state.power) {
+      this.setState({ powerStyle: OFF });
+    } else {
+      this.setState({ powerStyle: ON });
+    }
+  };
+
+  handleVolume = event => {
+    this.setState({
+      volume: event.target.value,
+      volumeDisplay: Math.round(event.target.value * 100)
+    });
+    document
+      .querySelectorAll("audio")
+      .forEach(a => (a.volume = event.target.value));
+  };
 
   render() {
     return (
@@ -62,7 +93,12 @@ class App extends Component {
           ;
         </div>
         <div id="controls">
-          <Controls bank={this.state.bankExpand} />
+          <Controls
+            power={this.state.powerStyle}
+            togglePower={this.togglePower}
+            volume={this.state.volume}
+            volumeDisplay={this.state.volumeDisplay}
+          />
         </div>
       </div>
     );
