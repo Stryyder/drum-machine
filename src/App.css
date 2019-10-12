@@ -29,6 +29,19 @@ h2 {
   place-items: center;
 }
 
+input[type="radio"] {
+  transform: scale(2);
+}
+
+#display {
+  color: var(--highlight-color);
+}
+
+.controlLabel {
+  border: 1px solid white;
+  background: var(--dark-color-offset);
+}
+
 #drum-machine {
   display: flex;
   flex-direction: row;
@@ -106,17 +119,18 @@ h2 {
 }
 
 .optionToggle {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-gap: 3px;
-  justify-items: stretch;
-  border: 1px solid white;
+  display: flex;
+  flex-direction: column;
+  justify-items: center;
+  align-content: center;
+  font-size: 1em;
+
   cursor: pointer;
-  background-color: var(--dark-color-offset);
 }
 
 .optionToggleItem {
-  border: 1px solid var(--dark-color-offset);
+  border: 1px solid var(--highlight-color);
+  margin: 10px;
 }
 
 input[type="range"] {
@@ -169,4 +183,10 @@ input[type="range"]:focus::-webkit-slider-runnable-track {
   background: rgba(0, 255, 0, 1);
   cursor: pointer;
   border-radius: 60px;
+}
+
+.controlItem {
+  margin-bottom: 10px;
+  margin-top: 20px;
+  border: 1px solid var(--dark-color-offset);
 }

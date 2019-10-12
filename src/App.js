@@ -22,19 +22,20 @@ import x2 from "./sounds/17.wav";
 import c2 from "./sounds/18.wav";
 
 const data = [
-  { id: "(C4)261.6256", letter: "Q", src: q, src2: q2, id2: "clap" },
-  { id: "(D4)293.6648", letter: "W", src: w, src2: w2, id2: "hat2" },
-  { id: "(E4)329.6276", letter: "E", src: e, src2: e2, id2: "hiss" },
-  { id: "(F4)349.2282", letter: "A", src: a, src2: a2, id2: "kick2" },
-  { id: "(G4)391.9954", letter: "S", src: s, src2: s2, id2: "openHat2" },
-  { id: "(A4)440.0000", letter: "D", src: d, src2: d2, id2: "triangle2" },
-  { id: "(B4)493.8833", letter: "Z", src: z, src2: z2, id2: "crash2" },
-  { id: "(C5)523.2511", letter: "X", src: x, src2: x2, id2: "deepKick" },
-  { id: "(D5)587.3295", letter: "C", src: c, src2: c2, id2: "snare4" }
+  { id: "C4", keyTrigger: "Q", src: q, src2: q2, id2: "clap" },
+  { id: "D4", keyTrigger: "W", src: w, src2: w2, id2: "hat2" },
+  { id: "E4", keyTrigger: "E", src: e, src2: e2, id2: "hiss" },
+  { id: "F4", keyTrigger: "A", src: a, src2: a2, id2: "kick2" },
+  { id: "G4", keyTrigger: "S", src: s, src2: s2, id2: "openHat2" },
+  { id: "A4", keyTrigger: "D", src: d, src2: d2, id2: "triangle2" },
+  { id: "B4", keyTrigger: "Z", src: z, src2: z2, id2: "crash2" },
+  { id: "C5", keyTrigger: "X", src: x, src2: x2, id2: "deepKick" },
+  { id: "D5", keyTrigger: "C", src: c, src2: c2, id2: "snare4" }
 ];
 
 const ON = "rgba(0,255,0,1)";
 const OFF = "rgba(0,255,0,0)";
+
 class App extends Component {
   constructor(props) {
     super(props);
@@ -44,7 +45,8 @@ class App extends Component {
       powerStyle: ON,
       volume: "0.2",
       volumeDisplay: "20",
-      bankExpand: false,
+      bankA: "checked",
+      bankB: "",
       introSong: ["E", "W", "Q", "W", "Q", "Q", "E", "S", "A", "D", "X", "X"]
     };
   }
@@ -58,12 +60,19 @@ class App extends Component {
 
   togglePower = () => {
     this.setState({ power: !this.state.power });
+    let powerIndicator = document.getElementById("powerIndicator");
 
     if (this.state.power) {
       this.setState({ powerStyle: OFF });
+      powerIndicator.style.background = OFF;
     } else {
       this.setState({ powerStyle: ON });
+      powerIndicator.style.background = ON;
     }
+
+    data.map(item =>
+      document.getElementById(item["id"]).classList.toggle("drum-pad-active")
+    );
   };
 
   handleVolume = event => {
@@ -76,6 +85,14 @@ class App extends Component {
       .forEach(a => (a.volume = event.target.value));
   };
 
+  toggleBank = () => {
+    if (this.state.bankA === "checked") {
+      this.setState({ bankA: "", bankB: "checked" });
+    } else {
+      this.setState({ bankA: "checked", bankB: "" });
+    }
+  };
+
   render() {
     return (
       <div id="drum-machine">
@@ -85,9 +102,9 @@ class App extends Component {
             <Drumpad
               key={d.id}
               id={d.id}
-              letter={d.letter}
+              keyTrigger={d.keyTrigger}
               src={d.src}
-              src2={d.src2}
+              power={this.state.power}
             />
           ))}
           ;
@@ -97,7 +114,12 @@ class App extends Component {
             power={this.state.powerStyle}
             togglePower={this.togglePower}
             volume={this.state.volume}
+            handleVolume={this.handleVolume}
             volumeDisplay={this.state.volumeDisplay}
+            powerStyle={this.state.powerStyle}
+            bankA={this.state.bankA}
+            bankB={this.state.bankB}
+            toggleBank={this.toggleBank}
           />
         </div>
       </div>
