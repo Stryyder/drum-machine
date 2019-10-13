@@ -11,15 +11,17 @@ import d from "./sounds/6.wav";
 import z from "./sounds/7.wav";
 import x from "./sounds/8.wav";
 import c from "./sounds/9.wav";
-import q2 from "./sounds/10.wav";
-import w2 from "./sounds/11.wav";
-import e2 from "./sounds/12.wav";
-import a2 from "./sounds/13.wav";
-import s2 from "./sounds/14.wav";
-import d2 from "./sounds/15.wav";
-import z2 from "./sounds/16.wav";
-import x2 from "./sounds/17.wav";
-import c2 from "./sounds/18.wav";
+import q2 from "./sounds/10.mp3";
+import w2 from "./sounds/11.mp3";
+import e2 from "./sounds/12.mp3";
+import a2 from "./sounds/13.mp3";
+import s2 from "./sounds/14.mp3";
+import d2 from "./sounds/15.mp3";
+import z2 from "./sounds/16.mp3";
+import x2 from "./sounds/17.mp3";
+import c2 from "./sounds/18.mp3";
+import on from "./sounds/on.wav";
+import off from "./sounds/off.wav";
 
 const INSTRUMENT_BANK = [
   {
@@ -28,7 +30,7 @@ const INSTRUMENT_BANK = [
     src: q,
     instrument: "C4",
     src2: q2,
-    instrument2: "test1"
+    instrument2: "Voice"
   },
   {
     id: "D4",
@@ -36,7 +38,7 @@ const INSTRUMENT_BANK = [
     src: w,
     instrument: "D4",
     src2: w2,
-    instrument2: "test2"
+    instrument2: "pack"
   },
   {
     id: "E4",
@@ -44,7 +46,7 @@ const INSTRUMENT_BANK = [
     src: e,
     instrument: "E4",
     src2: e2,
-    instrument2: "test3"
+    instrument2: "for"
   },
   {
     id: "F4",
@@ -52,7 +54,7 @@ const INSTRUMENT_BANK = [
     src: a,
     instrument: "F4",
     src2: a2,
-    instrument2: "test4"
+    instrument2: "sale"
   },
   {
     id: "G4",
@@ -60,7 +62,7 @@ const INSTRUMENT_BANK = [
     src: s,
     instrument: "G4",
     src2: s2,
-    instrument2: "test5"
+    instrument2: "now:"
   },
   {
     id: "A4",
@@ -68,7 +70,7 @@ const INSTRUMENT_BANK = [
     src: d,
     instrument: "A4",
     src2: d2,
-    instrument2: "test6"
+    instrument2: "Kilted"
   },
   {
     id: "B4",
@@ -76,7 +78,7 @@ const INSTRUMENT_BANK = [
     src: z,
     instrument: "B4",
     src2: z2,
-    instrument2: "test7"
+    instrument2: "Raccoon"
   },
   {
     id: "C5",
@@ -84,7 +86,7 @@ const INSTRUMENT_BANK = [
     src: x,
     instrument: "C5",
     src2: x2,
-    instrument2: "test8"
+    instrument2: "on"
   },
   {
     id: "D5",
@@ -92,7 +94,7 @@ const INSTRUMENT_BANK = [
     src: c,
     instrument: "D5",
     src2: c2,
-    instrument2: "test9"
+    instrument2: "Etsy!"
   }
 ];
 
@@ -105,13 +107,13 @@ class App extends Component {
 
     this.state = {
       power: true,
+      data: INSTRUMENT_BANK,
       bank: "A",
       powerStyle: ON,
       volume: "0.2",
       volumeDisplay: "20",
       bankA: "checked",
-      bankB: "",
-      introSong: ["E", "W", "Q", "W", "Q", "Q", "E", "S", "A", "D", "X", "X"]
+      bankB: ""
     };
   }
 
@@ -129,6 +131,7 @@ class App extends Component {
   togglePower = () => {
     this.setState({ power: !this.state.power });
     let powerIndicator = document.getElementById("powerIndicator");
+    let powerSound = document.getElementById("powerSound");
 
     if (this.state.power) {
       this.setState({ powerStyle: OFF });
@@ -137,6 +140,10 @@ class App extends Component {
       this.setState({ powerStyle: ON });
       powerIndicator.style.background = ON;
     }
+
+    // play a cool power on and off sound
+    powerSound.play();
+    powerSound.currentTime = 0;
 
     this.state.data.map(item =>
       document.getElementById(item["id"]).classList.toggle("drum-pad-active")
@@ -166,6 +173,10 @@ class App extends Component {
   render() {
     return (
       <div id="drum-machine">
+        <audio id="powerSound" preload="auto" src={this.state.power ? on : off}>
+          {" "}
+          Your browser does not support the audio element.
+        </audio>
         <div id="pad-display">
           <h1 id="branding">Drum Machine</h1>
           {INSTRUMENT_BANK.map(d => (

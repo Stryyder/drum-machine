@@ -5,7 +5,11 @@ class Drumpad extends Component {
     if (this.props.power) {
       let sound = document.getElementById(this.props.keyTrigger);
       let soundDiv = document.getElementById(this.props.id);
-      document.getElementById("display").innerHTML = this.props.instrument;
+      this.props.bank === "A"
+        ? (document.getElementById("display").innerHTML = this.props.instrument)
+        : (document.getElementById(
+            "display"
+          ).innerHTML = this.props.instrument2);
       soundDiv.classList.toggle("drum-pad-active");
       setTimeout(() => {
         soundDiv.classList.toggle("drum-pad-active");
@@ -18,18 +22,6 @@ class Drumpad extends Component {
   keyPressed = event => {
     if (event.keyCode === this.props.keyTrigger.charCodeAt()) {
       this.handleClick();
-    }
-  };
-
-  selectInstruments = () => {
-    if (this.props.bank === "A") {
-      document
-        .getElementById(this.props.keyTrigger)
-        .setAttribute("src", this.props.src1);
-    } else {
-      document
-        .getElementById(this.props.keyTrigger)
-        .setAttribute("src", this.props.src2);
     }
   };
 
