@@ -36,7 +36,7 @@ const Controls = props => {
             value="A"
             className="optionToggleItem"
             checked={props.bankA}
-            onClick={props.toggleBank}
+            onChange={props.toggleBank}
           />
           <label htmlFor="bankA">A</label>
           <br />
@@ -47,7 +47,7 @@ const Controls = props => {
             value="B"
             className="optionToggleItem"
             checked={props.bankB}
-            onClick={props.toggleBank}
+            onChange={props.toggleBank}
           />
           <label htmlFor="bankB">B</label>
         </form>

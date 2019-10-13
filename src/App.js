@@ -21,16 +21,79 @@ import z2 from "./sounds/16.wav";
 import x2 from "./sounds/17.wav";
 import c2 from "./sounds/18.wav";
 
-const data = [
-  { id: "C4", keyTrigger: "Q", src: q, src2: q2, id2: "clap" },
-  { id: "D4", keyTrigger: "W", src: w, src2: w2, id2: "hat2" },
-  { id: "E4", keyTrigger: "E", src: e, src2: e2, id2: "hiss" },
-  { id: "F4", keyTrigger: "A", src: a, src2: a2, id2: "kick2" },
-  { id: "G4", keyTrigger: "S", src: s, src2: s2, id2: "openHat2" },
-  { id: "A4", keyTrigger: "D", src: d, src2: d2, id2: "triangle2" },
-  { id: "B4", keyTrigger: "Z", src: z, src2: z2, id2: "crash2" },
-  { id: "C5", keyTrigger: "X", src: x, src2: x2, id2: "deepKick" },
-  { id: "D5", keyTrigger: "C", src: c, src2: c2, id2: "snare4" }
+const INSTRUMENT_BANK = [
+  {
+    id: "C4",
+    keyTrigger: "Q",
+    src: q,
+    instrument: "C4",
+    src2: q2,
+    instrument2: "test1"
+  },
+  {
+    id: "D4",
+    keyTrigger: "W",
+    src: w,
+    instrument: "D4",
+    src2: w2,
+    instrument2: "test2"
+  },
+  {
+    id: "E4",
+    keyTrigger: "E",
+    src: e,
+    instrument: "E4",
+    src2: e2,
+    instrument2: "test3"
+  },
+  {
+    id: "F4",
+    keyTrigger: "A",
+    src: a,
+    instrument: "F4",
+    src2: a2,
+    instrument2: "test4"
+  },
+  {
+    id: "G4",
+    keyTrigger: "S",
+    src: s,
+    instrument: "G4",
+    src2: s2,
+    instrument2: "test5"
+  },
+  {
+    id: "A4",
+    keyTrigger: "D",
+    src: d,
+    instrument: "A4",
+    src2: d2,
+    instrument2: "test6"
+  },
+  {
+    id: "B4",
+    keyTrigger: "Z",
+    src: z,
+    instrument: "B4",
+    src2: z2,
+    instrument2: "test7"
+  },
+  {
+    id: "C5",
+    keyTrigger: "X",
+    src: x,
+    instrument: "C5",
+    src2: x2,
+    instrument2: "test8"
+  },
+  {
+    id: "D5",
+    keyTrigger: "C",
+    src: c,
+    instrument: "D5",
+    src2: c2,
+    instrument2: "test9"
+  }
 ];
 
 const ON = "rgba(0,255,0,1)";
@@ -42,6 +105,7 @@ class App extends Component {
 
     this.state = {
       power: true,
+      bank: "A",
       powerStyle: ON,
       volume: "0.2",
       volumeDisplay: "20",
@@ -52,6 +116,10 @@ class App extends Component {
   }
 
   componentDidMount() {
+    this.volumeLeveler();
+  }
+
+  volumeLeveler() {
     // set initial volume so people's ears are okay
     document
       .querySelectorAll("audio")
@@ -70,7 +138,7 @@ class App extends Component {
       powerIndicator.style.background = ON;
     }
 
-    data.map(item =>
+    this.state.data.map(item =>
       document.getElementById(item["id"]).classList.toggle("drum-pad-active")
     );
   };
@@ -87,10 +155,12 @@ class App extends Component {
 
   toggleBank = () => {
     if (this.state.bankA === "checked") {
-      this.setState({ bankA: "", bankB: "checked" });
+      this.setState({ bankA: "", bankB: "checked", bank: "B" });
     } else {
-      this.setState({ bankA: "checked", bankB: "" });
+      this.setState({ bankA: "checked", bankB: "", bank: "A" });
     }
+
+    this.volumeLeveler();
   };
 
   render() {
@@ -98,13 +168,19 @@ class App extends Component {
       <div id="drum-machine">
         <div id="pad-display">
           <h1 id="branding">Drum Machine</h1>
-          {data.map(d => (
+          {INSTRUMENT_BANK.map(d => (
             <Drumpad
               key={d.id}
               id={d.id}
               keyTrigger={d.keyTrigger}
-              src={d.src}
+              src1={d.src}
+              src2={d.src2}
+              bank={this.state.bank}
+              bankA={this.state.bankA}
+              bankB={this.state.bankB}
               power={this.state.power}
+              instrument={d.instrument}
+              instrument2={d.instrument2}
             />
           ))}
           ;

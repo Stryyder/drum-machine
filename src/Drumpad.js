@@ -5,7 +5,7 @@ class Drumpad extends Component {
     if (this.props.power) {
       let sound = document.getElementById(this.props.keyTrigger);
       let soundDiv = document.getElementById(this.props.id);
-      document.getElementById("display").innerHTML = this.props.id;
+      document.getElementById("display").innerHTML = this.props.instrument;
       soundDiv.classList.toggle("drum-pad-active");
       setTimeout(() => {
         soundDiv.classList.toggle("drum-pad-active");
@@ -21,6 +21,18 @@ class Drumpad extends Component {
     }
   };
 
+  selectInstruments = () => {
+    if (this.props.bank === "A") {
+      document
+        .getElementById(this.props.keyTrigger)
+        .setAttribute("src", this.props.src1);
+    } else {
+      document
+        .getElementById(this.props.keyTrigger)
+        .setAttribute("src", this.props.src2);
+    }
+  };
+
   render() {
     return (
       <div id={this.props.id} className="drum-pad" onClick={this.handleClick}>
@@ -31,7 +43,7 @@ class Drumpad extends Component {
         <audio
           preload="auto"
           id={this.props.keyTrigger}
-          src={this.props.src}
+          src={this.props.bank === "A" ? this.props.src1 : this.props.src2}
           className="clip"
         >
           Your browser does not support the audio element.
