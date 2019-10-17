@@ -133,17 +133,19 @@ class App extends Component {
     let powerIndicator = document.getElementById("powerIndicator");
     let powerSound = document.getElementById("powerSound");
 
-    if (this.state.power) {
-      this.setState({ powerStyle: OFF });
-      powerIndicator.style.background = OFF;
-    } else {
-      this.setState({ powerStyle: ON });
-      powerIndicator.style.background = ON;
-    }
-
     // play a cool power on and off sound
     powerSound.play();
     powerSound.currentTime = 0;
+
+    if (this.state.power) {
+      this.setState({ powerStyle: OFF });
+      powerIndicator.style.background = OFF;
+      document.getElementById("display").innerHTML = "Power: Off";
+    } else {
+      this.setState({ powerStyle: ON });
+      powerIndicator.style.background = ON;
+      document.getElementById("display").innerHTML = "Power: On";
+    }
 
     this.state.data.map(item =>
       document.getElementById(item["id"]).classList.toggle("drum-pad-active")
