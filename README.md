@@ -5,3 +5,7 @@
 <img src="img/preview.png" width="400">
 
 
+#### Features
+* Style changes with power button to appear off
+* Functional volume slider
+* Two banks of sounds available on toggle
